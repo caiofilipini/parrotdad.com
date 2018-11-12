@@ -1,10 +1,52 @@
+<!--
+Press "s" to make parrotdad slow and do it again to make him realllly slow
+-->
 <style>
   @keyframes bg {
-    0% { background-size: 1% }
-    100% { background-size: 50% }
+    0% {
+      background-size: 1%;
+    }
+    100% {
+      background-size: 50%;
+    }
+  }
+
+  .parrotdad {
+    background-image: url('parrotdad.gif');
+    animation: bg infinite alternate;
+  }
+
+  .normal-parrotdad {
+    animation-duration: 0.5s;
+  }
+
+  .slow-parrotdad {
+    animation-duration: 2.5s;
+  }
+
+  .realllly-slow-parrotdad {
+    animation-duration: 10s;
   }
 </style>
-<body style="
-    background-image: url('parrotdad.gif');
-    animation: bg 0.5s infinite alternate;
-"></body>
+<body class="parrotdad normal-parrotdad"></body>
+<script>
+  var parrotSlowness = 0;
+  var slownessClasses = [
+    'normal-parrotdad',
+    'slow-parrotdad',
+    'realllly-slow-parrotdad'
+  ];
+
+  document.addEventListener('keyup', function(e) {
+    if (e.which === 83) {
+      if (parrotSlowness === 2) {
+        // WHOA THERE parrotdad you're wayyy too slow
+        parrotSlowness = 0;
+      } else {
+        parrotSlowness++;
+      }
+
+      document.body.className = 'parrotdad ' + slownessClasses[parrotSlowness];
+    }
+  });
+</script>
